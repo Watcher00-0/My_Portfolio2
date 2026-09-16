@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kishan Kannaujiya - Data Analyst. Power BI, SQL, Excel and Python portfolio." />
+    <title>Kishan Kannaujiya | Data Analyst</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dark">
+    <div class="bg-glow" aria-hidden="true"></div>
+    <canvas id="dot-grid-bg" aria-hidden="true"></canvas>
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- ===== icon sprite ===== -->
+    <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="3.2"/><path d="M4 5.5v6c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2v-6M4 11.5v6c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2v-6"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></symbol>
+      <symbol id="i-brief" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="13" rx="2.2"/><path d="M8.5 7V5.4A1.9 1.9 0 0 1 10.4 3.5h3.2a1.9 1.9 0 0 1 1.9 1.9V7M2.5 12.5h19"/></symbol>
+      <symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 4 1.8 9 12 14l10.2-5L12 4Z"/><path d="M5.6 11v5.1c0 1.6 2.9 2.9 6.4 2.9s6.4-1.3 6.4-2.9V11M21.4 9.3v5.4"/></symbol>
+      <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.4"/><path d="M8.6 13.4 7.2 21l4.8-2.4L16.8 21l-1.4-7.6"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2.8H7.2A2.2 2.2 0 0 0 5 5v14a2.2 2.2 0 0 0 2.2 2.2h9.6A2.2 2.2 0 0 0 19 19V7.8L14 2.8Z"/><path d="M13.8 3v5h5M8.6 13h6.8M8.6 17h4.8"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.4" y="4.8" width="19.2" height="14.4" rx="2.2"/><path d="m3.2 6.6 8.8 6.2 8.8-6.2"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10.2" r="2.6"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.2"/><path d="M4.5 20.4c.9-3.7 3.9-6 7.5-6s6.6 2.3 7.5 6"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.4" height="7.4" rx="1.4"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="1.4"/><rect x="3" y="13.6" width="7.4" height="7.4" rx="1.4"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="1.4"/></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 16.5 5.4-5.6 3.6 3.4L21 5.4"/><path d="M15.6 5.4H21v5.2"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1"/></symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5.6" y="5.6" width="12.8" height="12.8" rx="2.2"/><rect x="9.4" y="9.4" width="5.2" height="5.2" rx="1"/><path d="M9.6 2.6v3M14.4 2.6v3M9.6 18.4v3M14.4 18.4v3M2.6 9.6h3M2.6 14.4h3M18.4 9.6h3M18.4 14.4h3"/></symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24"><path d="M6.4 9.6h11.2v3.2a5.6 5.6 0 0 1-11.2 0V9.6Z"/><path d="M9.2 9.6V3.8M14.8 9.6V3.8M12 18.4v2.8"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8.4 7H17v8.6"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3.6v12.2M7.2 11.4 12 16.2l4.8-4.8M4.4 20.4h15.2"/></symbol>
+      <symbol id="i-li" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M5.3 3.5a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6ZM3.4 9.8h3.8V21H3.4V9.8ZM9.6 9.8h3.6v1.5h.1c.5-1 1.7-2 3.6-2 3.8 0 4.5 2.4 4.5 5.6V21h-3.8v-5.4c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9.6V9.8Z"/></symbol>
+      <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2.7a9.4 9.4 0 0 0-3 18.3c.5.1.6-.2.6-.5v-1.8c-2.5.5-3-.9-3-.9-.4-1-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.9.1 1.4.9 1.4.9.8 1.3 2 1 2.5.7.1-.5.3-.9.6-1.1-2-.2-4.1-1-4.1-4.4 0-1 .4-1.8.9-2.4-.1-.2-.4-1.1.1-2.4 0 0 .8-.2 2.5.9a8.6 8.6 0 0 1 4.6 0c1.7-1.1 2.5-.9 2.5-.9.5 1.3.2 2.2.1 2.4.6.7.9 1.5.9 2.4 0 3.4-2.1 4.1-4.1 4.4.3.3.6.8.6 1.6v2.3c0 .3.2.6.6.5A9.4 9.4 0 0 0 12 2.7Z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8"/><path d="M12 6.8V12l3.4 2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.8 12.6 4.6 4.6 9.8-10.4"/></symbol>
+    </svg>
+
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#home" aria-label="Kishan Kannaujiya portfolio home">
+          <span class="brand-avatar"><img src="profile.jpg" alt="" /></span>
+          <span class="brand-text"><b>Kishan Kannaujiya</b><small>Data Analyst</small></span>
+        </a>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+        <nav aria-label="Sections">
+          <a href="#about"><svg><use href="#i-user"/></svg>About</a>
+          <a href="#skills"><svg><use href="#i-grid"/></svg>Skills</a>
+          <a href="#work"><svg><use href="#i-chart"/></svg>Projects</a>
+          <a href="#experience"><svg><use href="#i-brief"/></svg>Experience</a>
+          <a href="#credentials"><svg><use href="#i-award"/></svg>Credentials</a>
+          <a href="#resume"><svg><use href="#i-file"/></svg>Resume</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-btn" href="https://www.linkedin.com/in/kishan-kannaujiya-data-analyst" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg><use href="#i-li"/></svg></a>
+          <a class="icon-btn" href="https://github.com/Watcher00-0" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg><use href="#i-gh"/></svg></a>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <!-- ============ HERO ============ -->
+      <section class="hero wrap">
+        <p class="status reveal"><span class="pulse"></span> Available for data analyst roles</p>
+
+        <div class="avatar reveal delay-1">
+          <span class="avatar-ring" aria-hidden="true"></span>
+          <img src="profile.jpg" alt="Kishan Kannaujiya" width="520" height="520" />
+          <span class="avatar-badge" title="Verified profile"><svg><use href="#i-check"/></svg></span>
+        </div>
+
+        <h1 class="reveal delay-2">Kishan Kannaujiya</h1>
+
+        <p class="role-tag reveal delay-3"><svg><use href="#i-chart"/></svg> <b>Data Analyst</b> <i>/</i> <span>Power BI · SQL · Excel · Python</span></p>
+
+        <p class="hero-intro reveal delay-4">I turn messy datasets into dashboards and decisions people actually use. Maths and I.T. teacher by training, analyst by practice — currently pursuing an MSc in Computer Science at the University of Mumbai.</p>
+
+        <div class="hero-actions reveal delay-5">
+          <a class="btn btn-primary" href="#work"><svg><use href="#i-chart"/></svg> View my projects</a>
+          <a class="btn btn-ghost" href="resume/my-resume.pdf" target="_blank" rel="noopener noreferrer"><svg><use href="#i-file"/></svg> Resume</a>
+          <a class="btn btn-ghost" href="https://github.com/Watcher00-0" target="_blank" rel="noopener noreferrer"><svg><use href="#i-gh"/></svg> GitHub</a>
+        </div>
+
+        <div class="stat-strip reveal delay-6">
+          <div class="stat lift"><span class="stat-ico"><svg><use href="#i-clock"/></svg></span><strong>3+</strong><small>Years teaching</small></div>
+          <div class="stat lift"><span class="stat-ico"><svg><use href="#i-cap"/></svg></span><strong>8.7</strong><small>BSc CS CGPA</small></div>
+          <div class="stat lift"><span class="stat-ico"><svg><use href="#i-award"/></svg></span><strong>9</strong><small>Certifications</small></div>
+          <div class="stat lift"><span class="stat-ico"><svg><use href="#i-trend"/></svg></span><strong>25%</strong><small>Student improvement</small></div>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section id="about" class="section wrap">
+        <div class="section-head reveal">
+          <span class="section-ico"><svg><use href="#i-user"/></svg></span>
+          <div><h2>About me</h2><p>A teacher's eye for the why behind the numbers.</p></div>
+        </div>
+        <div class="panel about-panel reveal delay-1">
+          <div class="about-text">
+            <p>I'm Kishan, a Mathematics and I.T. teacher moving into data analytics. I teach 11th and 12th grade science, commerce and I.T. students at H.S International High School in Mumbai, and I've spent three years turning difficult ideas into explanations that land.</p>
+            <p>That is the same job an analyst does. Find the signal in the noise, strip away what doesn't matter, and hand someone a clear answer they can act on. I now do it with Power BI, SQL, Excel and Python instead of a whiteboard.</p>
+            <ul class="chips about-chips">
+              <li class="lift"><svg><use href="#i-chart"/></svg>Dashboards</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>SQL reporting</li>
+              <li class="lift"><svg><use href="#i-check"/></svg>Data cleaning</li>
+              <li class="lift"><svg><use href="#i-spark"/></svg>Data storytelling</li>
+            </ul>
+          </div>
+          <ul class="about-facts">
+            <li class="lift"><span><svg><use href="#i-pin"/></svg></span><b>Titwala East, Kalyan</b><small>Thane, Maharashtra</small></li>
+            <li class="lift"><span><svg><use href="#i-cap"/></svg></span><b>MSc Computer Science</b><small>University of Mumbai, ongoing</small></li>
+            <li class="lift"><span><svg><use href="#i-brief"/></svg></span><b>Maths &amp; I.T. Teacher</b><small>H.S International, since 2023</small></li>
+            <li class="lift"><span><svg><use href="#i-target"/></svg></span><b>Open to entry-level roles</b><small>Data / business analytics</small></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <section id="skills" class="section wrap">
+        <div class="section-head reveal">
+          <span class="section-ico"><svg><use href="#i-grid"/></svg></span>
+          <div><h2>Skills &amp; toolkit</h2><p>Technical fluency paired with the ability to explain it.</p></div>
+        </div>
+
+        <div class="skill-stack">
+          <article class="panel skill-card reveal">
+            <header><span class="skill-ico"><svg><use href="#i-chart"/></svg></span><div><h3>Data analytics</h3><p>Turning raw information into decision-ready insight.</p></div></header>
+            <ul class="chips">
+              <li class="lift"><svg><use href="#i-chart"/></svg>Data Analysis</li>
+              <li class="lift"><svg><use href="#i-chart"/></svg>Data Analytics</li>
+              <li class="lift"><svg><use href="#i-check"/></svg>Data Cleaning</li>
+              <li class="lift"><svg><use href="#i-trend"/></svg>Data Visualization</li>
+              <li class="lift"><svg><use href="#i-spark"/></svg>Data Storytelling</li>
+              <li class="lift"><svg><use href="#i-grid"/></svg>Data Presentation</li>
+              <li class="lift"><svg><use href="#i-target"/></svg>Statistical Data Analysis</li>
+              <li class="lift"><svg><use href="#i-target"/></svg>Statistics</li>
+              <li class="lift"><svg><use href="#i-grid"/></svg>Dashboard Building</li>
+              <li class="lift"><svg><use href="#i-trend"/></svg>Business Intelligence (BI)</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Data Modeling</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Data Management</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Data Mining</li>
+            </ul>
+          </article>
+
+          <article class="panel skill-card reveal delay-1">
+            <header><span class="skill-ico"><svg><use href="#i-cpu"/></svg></span><div><h3>Tools &amp; technologies</h3><p>What I actually build, model and report in.</p></div></header>
+            <ul class="chips">
+              <li class="lift"><svg><use href="#i-grid"/></svg>Microsoft Excel</li>
+              <li class="lift"><svg><use href="#i-chart"/></svg>Microsoft Power BI</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Microsoft SQL Server</li>
+              <li class="lift"><svg><use href="#i-cpu"/></svg>Python</li>
+              <li class="lift"><svg><use href="#i-plug"/></svg>Microsoft Power Query</li>
+              <li class="lift"><svg><use href="#i-cpu"/></svg>DAX</li>
+              <li class="lift"><svg><use href="#i-chart"/></svg>Tableau</li>
+              <li class="lift"><svg><use href="#i-grid"/></svg>Google Sheets</li>
+              <li class="lift"><svg><use href="#i-cpu"/></svg>Google Colab</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>DBMS</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Database Tools</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Oracle Database</li>
+              <li class="lift"><svg><use href="#i-grid"/></svg>Spreadsheets</li>
+            </ul>
+          </article>
+
+          <article class="panel skill-card reveal delay-2">
+            <header><span class="skill-ico"><svg><use href="#i-spark"/></svg></span><div><h3>AI &amp; generative AI</h3><p>Applied AI for faster, sharper analytics work.</p></div></header>
+            <ul class="chips">
+              <li class="lift"><svg><use href="#i-spark"/></svg>Artificial Intelligence (AI)</li>
+              <li class="lift"><svg><use href="#i-spark"/></svg>AI Foundations</li>
+              <li class="lift"><svg><use href="#i-spark"/></svg>Generative AI</li>
+              <li class="lift"><svg><use href="#i-cpu"/></svg>AI Agents</li>
+              <li class="lift"><svg><use href="#i-cpu"/></svg>Machine Learning</li>
+              <li class="lift"><svg><use href="#i-target"/></svg>Prompt Engineering</li>
+              <li class="lift"><svg><use href="#i-plug"/></svg>OpenAI API</li>
+              <li class="lift"><svg><use href="#i-db"/></svg>Retrieval-Augmented Generation</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ PROJECTS ============ -->
+      <section id="work" class="section wrap">
+        <div class="section-head reveal">
+          <span class="section-ico"><svg><use href="#i-chart"/></svg></span>
+          <div><h2>Selected projects</h2><p>Work where the insight mattered more than the chart.</p></div>
+          <a class="head-link" href="https://github.com/Watcher00-0" target="_blank" rel="noopener noreferrer">All projects <svg><use href="#i-arrow"/></svg></a>
+        </div>
+
+        <div class="project-grid">
+          <article class="panel project lift reveal">
+            <div class="project-top"><span class="project-ico"><svg><use href="#i-chart"/></svg></span><em>Power BI</em></div>
+            <h3>Tata Retail Intelligence</h3>
+            <p>Four executive dashboards mapping revenue seasonality, key markets, top customers and expansion opportunities for a retail dataset.</p>
+            <ul class="tags"><li>Power BI</li><li>DAX</li><li>Power Query</li></ul>
+            <a class="project-link" href="#contact">Ask me about it <svg><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="panel project lift reveal delay-1">
+            <div class="project-top"><span class="project-ico"><svg><use href="#i-trend"/></svg></span><em>Power BI + API</em></div>
+            <h3>Weather &amp; Air Quality Analytics</h3>
+            <p>Live weather API data with location filters and KPIs for temperature, air quality, wind and UV index, refreshed on a schedule.</p>
+            <ul class="tags"><li>REST API</li><li>Power BI</li><li>KPI design</li></ul>
+            <a class="project-link" href="#contact">Ask me about it <svg><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="panel project lift reveal delay-2">
+            <div class="project-top"><span class="project-ico"><svg><use href="#i-plug"/></svg></span><em>Chrome extension</em></div>
+            <h3>FocusFlow Extension</h3>
+            <p>A browser extension that adds a focused, distraction-aware layer to everyday browsing, with session tracking built in.</p>
+            <ul class="tags"><li>JavaScript</li><li>Chrome APIs</li><li>UX</li></ul>
+            <a class="project-link" href="#contact">Ask me about it <svg><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="panel project lift reveal delay-3">
+            <div class="project-top"><span class="project-ico"><svg><use href="#i-cpu"/></svg></span><em>IoT + Arduino</em></div>
+            <h3>Distance Sensing System</h3>
+            <p>An ultrasonic sensing system built on Arduino for real-time distance measurement, with readings logged for analysis.</p>
+            <ul class="tags"><li>Arduino</li><li>HC-SR04</li><li>Embedded C</li></ul>
+            <a class="project-link" href="#contact">Ask me about it <svg><use href="#i-arrow"/></svg></a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ EXPERIENCE ============ -->
+      <section id="experience" class="section wrap">
+        <div class="section-head reveal">
+          <span class="section-ico"><svg><use href="#i-brief"/></svg></span>
+          <div><h2>Experience &amp; education</h2><p>A path built by doing the work, then explaining it.</p></div>
+        </div>
+
+        <ol class="timeline">
+          <li class="tl-item reveal">
+            <span class="tl-node"><svg><use href="#i-chart"/></svg></span>
+            <div class="panel tl-body lift">
+              <div class="tl-meta"><em>2026 — Present</em><b>Power BI</b></div>
+              <h3>Data Analytics Job Simulation</h3>
+              <p>Tata Group via Forage · Remote</p>
+            </div>
+          </li>
+          <li class="tl-item reveal delay-1">
+            <span class="tl-node"><svg><use href="#i-spark"/></svg></span>
+            <div class="panel tl-body lift">
+              <div class="tl-meta"><em>2026 — Present</em><b>Analytics</b></div>
+              <h3>Data Analytics with AI Intern</h3>
+              <p>BharatCares · AICTE &amp; IBM SkillsBuild</p>
+            </div>
+          </li>
+          <li class="tl-item reveal delay-2">
+            <span class="tl-node"><svg><use href="#i-brief"/></svg></span>
+            <div class="panel tl-body lift">
+              <div class="tl-meta"><em>2023 — Present</em><b>Teaching</b></div>
+              <h3>Mathematics &amp; I.T. Teacher</h3>
+              <p>H.S International High School · Mumbai</p>
+            </div>
+          </li>
+          <li id="education" class="tl-item reveal delay-3">
+            <span class="tl-node"><svg><use href="#i-cap"/></svg></span>
+            <div class="panel tl-body lift">
+              <div class="tl-meta"><em>2026 — Present</em><b>Education</b></div>
+              <h3>MSc, Computer Science</h3>
+              <p>University of Mumbai</p>
+            </div>
+          </li>
+          <li class="tl-item reveal delay-4">
+            <span class="tl-node"><svg><use href="#i-cap"/></svg></span>
+            <div class="panel tl-body lift">
+              <div class="tl-meta"><em>2025</em><b>Education</b></div>
+              <h3>BSc, Computer Science</h3>
+              <p>B.K. Birla College · CGPA 8.7</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============ CREDENTIALS ============ -->
+      <section id="credentials" class="section wrap">
+        <div class="section-head reveal">
+          <span class="section-ico"><svg><use href="#i-award"/></svg></span>
+          <div><h2>Credentials</h2><p>Continuous learning is part of how I work.</p></div>
+        </div>
+
+        <div class="cert-grid">
+          <article class="panel cert lift reveal"><span class="cert-ico"><svg><use href="#i-db"/></svg></span><h3>Oracle Certified Foundations Associate</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-1"><span class="cert-ico"><svg><use href="#i-spark"/></svg></span><h3>Oracle Agentic AI Certified Foundations Associate</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-2"><span class="cert-ico"><svg><use href="#i-chart"/></svg></span><h3>Deloitte Australia Data Analytics Job Simulation</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-3"><span class="cert-ico"><svg><use href="#i-spark"/></svg></span><h3>IBM SkillsBuild: Data Analytics with AI</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-4"><span class="cert-ico"><svg><use href="#i-db"/></svg></span><h3>IBM SkillsBuild: Data Fundamentals</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-5"><span class="cert-ico"><svg><use href="#i-cap"/></svg></span><h3>Gemini Certified Educator</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-6"><span class="cert-ico"><svg><use href="#i-cpu"/></svg></span><h3>AWS Solutions Architecture Job Simulation</h3><em>2026</em></article>
+          <article class="panel cert lift reveal delay-7"><span class="cert-ico"><svg><use href="#i-cpu"/></svg></span><h3>AWS &amp; Databricks Certifications</h3><em>2025–26</em></article>
+          <article class="panel cert lift reveal delay-8"><span class="cert-ico"><svg><use href="#i-target"/></svg></span><h3>I.S.R.O. Certified Learning</h3><em>Credential</em></article>
+        </div>
+      </section>
+
+      <!-- ============ RESUME ============ -->
+      <section id="resume" class="section wrap">
+        <div class="section-head reveal">
+          <span class="section-ico"><svg><use href="#i-file"/></svg></span>
+          <div><h2>Resume</h2><p>The whole story on one page.</p></div>
+        </div>
+        <div class="panel resume-panel reveal delay-1">
+          <span class="resume-ico"><svg><use href="#i-file"/></svg></span>
+          <div class="resume-text">
+            <h3>Kishan Kannaujiya — Data Analyst</h3>
+            <p>Experience, projects and certifications in a single PDF, ready to open or take with you.</p>
+          </div>
+          <div class="resume-actions">
+            <a class="btn btn-primary" href="resume/my-resume.pdf" target="_blank" rel="noopener noreferrer"><svg><use href="#i-arrow"/></svg> View resume</a>
+            <a class="btn btn-ghost" href="resume/my-resume.pdf" download><svg><use href="#i-down"/></svg> Download PDF</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact" class="section wrap contact">
+        <div class="panel contact-panel reveal">
+          <p class="status"><span class="pulse"></span> Let's connect</p>
+          <h2>Have a data problem?<br />Let's find the story in it.</h2>
+          <a class="email lift" href="mailto:kishankanaujiya8@gmail.com"><svg><use href="#i-mail"/></svg> kishankanaujiya8@gmail.com</a>
+          <div class="contact-links">
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/kishan-kannaujiya-data-analyst" target="_blank" rel="noopener noreferrer"><svg><use href="#i-li"/></svg> LinkedIn</a>
+            <a class="btn btn-ghost" href="https://github.com/Watcher00-0" target="_blank" rel="noopener noreferrer"><svg><use href="#i-gh"/></svg> GitHub</a>
+            <a class="btn btn-ghost" href="resume/my-resume.pdf" target="_blank" rel="noopener noreferrer"><svg><use href="#i-file"/></svg> Resume</a>
+          </div>
+        </div>
+        <footer class="foot reveal delay-1">
+          <p><svg><use href="#i-pin"/></svg> Titwala East, Kalyan, Maharashtra, India</p>
+          <small>© 2026 Kishan Kannaujiya</small>
+        </footer>
+      </section>
+    </main>
+
+    <a class="to-top" href="#home" aria-label="Back to top"><svg><use href="#i-arrow"/></svg></a>
+    <script src="script.js"></script>
+  </body>
+</html>
