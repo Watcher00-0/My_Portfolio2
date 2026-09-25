@@ -416,6 +416,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--violet);outline-off
 .delay-6{transition-delay:.48s}
 .delay-7{transition-delay:.56s}
 .delay-8{transition-delay:.64s}
+.delay-9{transition-delay:.72s}
+.delay-10{transition-delay:.8s}
 
 /* ==========================================================================
    RESPONSIVE
